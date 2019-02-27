@@ -27,17 +27,43 @@ const homeworkContainer = document.querySelector('#homework-container');
    const newDiv = createDiv();
    homeworkContainer.appendChild(newDiv);
  */
+
+function random(from, to) {
+  return parseInt(from + Math.random() * to - from);
+}
+
+let currentDrag;
+let startX = 0;
+let startY = 0;
+
+document.addEventListener('mousemove', e => {
+  if (currentDrag) {
+    currentDrag.style.top = (e.clientY - startY) + 'px';
+    currentDrag.style.left = (e.clientX - startX) + 'px';
+  }
+});
+
 function createDiv() {
-  let newDiv = document.createElement('div');
+  const div = document.createElement('div');
+  const minSize = 20;
+  const maxSize = 200;
+  const maxColor = 0xffffff;
 
-  newDiv.classList.add('draggable-div');
-  newDiv.style.height = '100px';
-  newDiv.style.width = '100px';
-  newDiv.style.backgroundColor = 'black';
-  newDiv.style.top = '0';
-  newDiv.style.left = '0';
+  div.className = 'draggable-div';
+  div.style.background = '#' + random(0, maxColor);
+  div.style.top = random(0, window.innerHeight) + 'px';
+  div.style.left = random(0, window.innerWidth) + 'px';
+  div.style.width = random(minSize, maxSize) + 'px';
+  div.style.height = random(minSize, maxSize) + 'px';
 
-  return newDiv;
+  div.addEventListener('mousedown', e => {
+    currentDrag = div;
+    startX = e.offsetX;
+    startY = e.offsetY;
+  });
+  div.addEventListener('mouseup', () => currentDrag = false);
+
+  return div;
 }
 
 /*
@@ -48,8 +74,6 @@ function createDiv() {
    homeworkContainer.appendChild(newDiv);
    addListeners(newDiv);
  */
-function addListeners(target) {
-}
 
 let addDivButton = homeworkContainer.querySelector('#addDiv');
 
@@ -60,7 +84,7 @@ addDivButton.addEventListener('click', function() {
   // добавить на страницу
   homeworkContainer.appendChild(div);
   // назначить обработчики событий мыши для реализации D&D
-  addListeners(div);
+  // addListeners(div);
   // можно не назначать обработчики событий каждому div в отдельности, а использовать делегирование
   // или использовать HTML5 D&D - https://www.html5rocks.com/ru/tutorials/dnd/basics/
 });
