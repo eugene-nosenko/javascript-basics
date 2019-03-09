@@ -1,3 +1,5 @@
+import { tryAgain } from './index.js';
+
 /* ДЗ 6 - Асинхронность и работа с сетью */
 
 /*
@@ -32,6 +34,7 @@ function loadAndSortTowns() {
     fetch('https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json')
       .then(response => {
         return response.json();
+
       })
       .then(data => {
         let sortTowns = data.sort((a, b) => a.name > b.name ? 1 : -1)

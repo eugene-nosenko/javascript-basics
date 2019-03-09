@@ -1,3 +1,4 @@
+import { loadAndSortTowns } from './index.js';
 /*
  Страница должна предварительно загрузить список городов из
  https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json
@@ -19,6 +20,19 @@
  то необходимо показать надпись "Не удалось загрузить города" и кнопку "Повторить".
  При клике на кнопку, процесс загруки повторяется заново
  */
+
+function tryAgain() {
+  const tryAgainButton = document.createElement('button')
+
+  tryAgainButton.innerHTML = 'Повторить';
+  loadingBlock.innerHTML = 'Не удалось загрузить города';
+
+  // tryAgainButton.onclick() = () => loadTowns();
+  tryAgainButton.addEventListener('click', loadTowns());
+
+  return homeworkContainer.appendChild(tryAgainButton)
+
+}
 
 /*
  homeworkContainer - это контейнер для всех ваших домашних заданий
@@ -79,7 +93,7 @@ loadTowns()
 
         if (isMatching(element, chunk)) {
           let div = document.createElement('div');
-          
+
           div.textContent = element;
           filterResult.appendChild(div);
 
@@ -92,11 +106,11 @@ loadTowns()
       }
     });
   })
-  .catch(() => {
-
-  })
+  .catch(() => {})
 
 export {
   loadTowns,
-  isMatching
+  isMatching,
+  tryAgain
+
 };
