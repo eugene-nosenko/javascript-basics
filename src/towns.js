@@ -1,4 +1,5 @@
-import { loadAndSortTowns } from './index.js';
+import { loadAndSortTowns as loadTowns } from './index.js';
+// import { loadAndSortTowns } from './index.js';
 /*
  Страница должна предварительно загрузить список городов из
  https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json
@@ -32,6 +33,13 @@ function tryAgain() {
 
   return homeworkContainer.appendChild(tryAgainButton)
 
+  // loadingBlock.style.display = 'none';
+
+  // errorMessage.textContent = error;
+  // errorButton.addEventListener('click', e => {
+  //   e.preventDefault();
+  //   loadTowns();
+
 }
 
 /*
@@ -50,9 +58,9 @@ const homeworkContainer = document.querySelector('#homework-container');
  Массив городов пожно получить отправив асинхронный запрос по адресу
  https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json
  */
-function loadTowns() {
-  return loadAndSortTowns();
-}
+// function loadTowns() {
+//   return loadAndSortTowns();
+// }
 
 /*
  Функция должна проверять встречается ли подстрока chunk в строке full
@@ -105,8 +113,20 @@ loadTowns()
         filterResult.innerHTML = '';
       }
     });
+  
+  }, error => {
+    const tryAgainButton = document.createElement('button')
+
+    tryAgainButton.innerHTML = 'Повторить';
+    loadingBlock.innerHTML = 'Не удалось загрузить города';
+
+    // tryAgainButton.onclick() = () => loadTowns();
+    tryAgainButton.addEventListener('click', loadTowns());
+
+    return homeworkContainer.appendChild(tryAgainButton)
+
   })
-  .catch(() => {})
+  // .catch((e) => console.log(e));
 
 export {
   loadTowns,

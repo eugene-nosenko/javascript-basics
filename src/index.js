@@ -33,9 +33,13 @@ function loadAndSortTowns() {
   return new Promise(function (resolve, reject) {
     fetch('https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json')
       .then(response => {
-        return response.json();
+        if (response.status > 400) {
+          return reject();
+        } 
 
+        return response.json();
       })
+
       .then(data => {
         let sortTowns = data.sort((a, b) => a.name > b.name ? 1 : -1)
 
