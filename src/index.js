@@ -1,5 +1,3 @@
-import { tryAgain } from './index.js';
-
 /* ДЗ 6 - Асинхронность и работа с сетью */
 
 /*
@@ -45,7 +43,7 @@ function loadAndSortTowns() {
 
         resolve(sortTowns);
       })
-      .catch((e) => reject(e));
+      
   })
 }
 

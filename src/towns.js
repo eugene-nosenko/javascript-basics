@@ -22,25 +22,25 @@ import { loadAndSortTowns as loadTowns } from './index.js';
  При клике на кнопку, процесс загруки повторяется заново
  */
 
-function tryAgain() {
-  const tryAgainButton = document.createElement('button')
+// function tryAgain() {
+//   const tryAgainButton = document.createElement('button')
 
-  tryAgainButton.innerHTML = 'Повторить';
-  loadingBlock.innerHTML = 'Не удалось загрузить города';
+//   tryAgainButton.innerHTML = 'Повторить';
+//   loadingBlock.innerHTML = 'Не удалось загрузить города';
 
-  // tryAgainButton.onclick() = () => loadTowns();
-  tryAgainButton.addEventListener('click', loadTowns());
+//   // tryAgainButton.onclick() = () => loadTowns();
+//   tryAgainButton.addEventListener('click', loadTowns());
 
-  return homeworkContainer.appendChild(tryAgainButton)
+//   return homeworkContainer.appendChild(tryAgainButton)
 
-  // loadingBlock.style.display = 'none';
+//   // loadingBlock.style.display = 'none';
 
-  // errorMessage.textContent = error;
-  // errorButton.addEventListener('click', e => {
-  //   e.preventDefault();
-  //   loadTowns();
+//   // errorMessage.textContent = error;
+//   // errorButton.addEventListener('click', e => {
+//   //   e.preventDefault();
+//   //   loadTowns();
 
-}
+// }
 
 /*
  homeworkContainer - это контейнер для всех ваших домашних заданий
@@ -130,7 +130,6 @@ loadTowns()
 
 export {
   loadTowns,
-  isMatching,
-  tryAgain
+  isMatching
 
 };
